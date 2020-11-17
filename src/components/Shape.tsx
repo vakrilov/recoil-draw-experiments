@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { shapeFamily } from "../state/shapes";
 import { selectedShapeIds, selectionDrag } from "../state/selection";
 import { positionStyle } from "../utils";
+import { useSetRecoilState } from "recoil";
 
 type ShapeProps = {
   id: number;
@@ -11,7 +12,7 @@ type ShapeProps = {
 export const Shape: React.FC<ShapeProps> = ({ id }) => {
   const [shape] = useRecoilState(shapeFamily(id));
   const [selectedIds, setSelectedIds] = useRecoilState(selectedShapeIds);
-  const [, setSelectionDrag] = useRecoilState(selectionDrag);
+  const setSelectionDrag = useSetRecoilState(selectionDrag);
 
   const select = React.useCallback(
     (e: React.PointerEvent) => {

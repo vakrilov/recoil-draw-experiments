@@ -4,15 +4,6 @@ import { ShapeDef } from "../state/shapes";
 import { selectedShape } from "../state/selection";
 import { TextField } from "@material-ui/core";
 
-const renderInfo = (shape: ShapeDef) => (
-  <>
-    <h3> Shape: {shape.id}</h3>
-    <p>x: {shape.x} </p>
-    <p>y: {shape.y} </p>
-    <p>width: {shape.width} </p>
-    <p>height: {shape.height} </p>
-  </>
-);
 type ShapeInputProps = {
   shape: ShapeDef;
   name: keyof ShapeDef;
