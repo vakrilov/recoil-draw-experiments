@@ -2,12 +2,16 @@ import { atom, DefaultValue, selector } from "recoil";
 import { ShapeDef, shapeFamily } from "./shapes";
 import { getBoundingRect } from "../utils";
 
+export type SelectionShapeDef = ShapeDef & {
+  isMultiple?: boolean;
+};
+
 export const selectedShapeIds = atom<number[]>({
   key: "selected-shape-id",
   default: []
 });
 
-export const selectedShape = selector<ShapeDef | undefined>({
+export const selectedShape = selector<SelectionShapeDef | undefined>({
   key: "selected-shape",
   get: ({ get }) => {
     const selectedShapes = get(selectedShapeIds).map((shapeId) =>
@@ -23,6 +27,7 @@ export const selectedShape = selector<ShapeDef | undefined>({
       return {
         ...rect,
         id: -1,
+        isMultiple: true,
         text: ""
       };
     }

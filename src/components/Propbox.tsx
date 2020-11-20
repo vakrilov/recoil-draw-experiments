@@ -4,12 +4,12 @@ import { ShapeDef } from "../state/shapes";
 import { selectedShape } from "../state/selection";
 import { TextField } from "@material-ui/core";
 
-type ShapeInputProps = {
+type NumberInputProps = {
   shape: ShapeDef;
   name: keyof ShapeDef;
   setShapeProp: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 };
-export const ShapePropInput: React.FC<ShapeInputProps> = ({
+export const NumberInput: React.FC<NumberInputProps> = ({
   shape,
   name,
   setShapeProp
@@ -37,23 +37,25 @@ export const Propbox: React.FC = () => {
   );
 
   if (!shape) {
-    return <div className="propbox"> select something</div>;
+    return (
+      <div className="propbox">
+        <h3>Select Something</h3>
+      </div>
+    );
+  } else if (shape.isMultiple) {
+    return (
+      <div className="propbox">
+        <h3> Multiple Selection</h3>
+      </div>
+    );
   } else {
     return (
       <div className="propbox">
         <h3> Shape: {shape.id}</h3>
-        <ShapePropInput shape={shape} setShapeProp={setShapeProp} name="x" />
-        <ShapePropInput shape={shape} setShapeProp={setShapeProp} name="y" />
-        <ShapePropInput
-          shape={shape}
-          setShapeProp={setShapeProp}
-          name="width"
-        />
-        <ShapePropInput
-          shape={shape}
-          setShapeProp={setShapeProp}
-          name="height"
-        />
+        <NumberInput shape={shape} setShapeProp={setShapeProp} name="x" />
+        <NumberInput shape={shape} setShapeProp={setShapeProp} name="y" />
+        <NumberInput shape={shape} setShapeProp={setShapeProp} name="width" />
+        <NumberInput shape={shape} setShapeProp={setShapeProp} name="height" />
         <TextField
           label="text"
           name="text"

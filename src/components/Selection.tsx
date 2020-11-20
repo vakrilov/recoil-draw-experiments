@@ -110,15 +110,15 @@ export const Selection: React.FC = () => {
       onPointerUp={stopDrag}
       style={positionStyle(shape, borderSize)}
     >
-      <div
-        ref={resizeHandleRef}
-        className="resize-handle"
-        onPointerDown={startResize}
-        onPointerMove={resize}
-        onPointerUp={stopResize}
-      >
-        {" "}
-      </div>
+      {!shape.isMultiple && (
+        <div
+          ref={resizeHandleRef}
+          className="resize-handle"
+          onPointerDown={startResize}
+          onPointerMove={resize}
+          onPointerUp={stopResize}
+        />
+      )}
     </div>
   ) : null;
 };
